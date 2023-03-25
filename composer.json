@@ -15,5 +15,7 @@
             "email": "i@akhaled.com"
         }
     ],
-    "require": {}
+    "require": {
+      "php": "^7.0"
+    }
 }

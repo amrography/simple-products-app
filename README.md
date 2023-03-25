@@ -7,6 +7,7 @@
 ## Road map
 
 - [x] Create app container
+- [x] Include Config and develop facade classes
 - [ ] Include ORM
 - [ ] Include routes handler
 - [ ] Include validation processor
