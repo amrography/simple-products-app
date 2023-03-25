@@ -3,6 +3,8 @@
 namespace Akhaled\Ecommerce\Core\Bootstrap;
 
 use Akhaled\Ecommerce\Core\Config;
+use Akhaled\Ecommerce\Core\Database\Connection;
+use Akhaled\Ecommerce\Core\Facade;
 use ErrorException;
 
 class Application
@@ -18,7 +20,7 @@ class Application
 
     public function bootstrap()
     {
-        $this->setConfigInstance();
+        $this->registerContainerInstances();
     }
 
     private static function transformErrorsToExceptions($severity, $message, $file, $line)
@@ -29,9 +31,10 @@ class Application
         throw new ErrorException($message, 0, $severity, $file, $line);
     }
 
-    private function setConfigInstance(): self
+    private function registerContainerInstances(): self
     {
-        self::setInstance(Config::class, new Config);
+        self::setInstance(Facade\Config::class, new Config);
+        self::setInstance(Facade\DatabaseConnection::class, new Connection);
 
         return $this;
     }
