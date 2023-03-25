@@ -1,0 +1,19 @@
+{
+    "name": "akhaled/ecommerce",
+    "autoload": {
+        "psr-4": {
+            "Akhaled\\Ecommerce\\": "src/",
+            "Akhaled\\Ecommerce\\Core\\": "src/core/"
+        },
+        "files": [
+            "helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Amro Khaled",
+            "email": "i@akhaled.com"
+        }
+    ],
+    "require": {}
+}
