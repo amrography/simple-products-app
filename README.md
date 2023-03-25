@@ -64,6 +64,6 @@ $product = (new \Akhaled\Ecommerce\Models\Product)->where('sku', '1023-0213-313'
 - [x] Include Config and develop facade classes
 - [x] Include ORM
 - [x] Include routes handler
-- [ ] Include response handler
-- [ ] Include validation processor
+- [x] Handle route response
 - [ ] Install vue with vite
+- [ ] Include validation processor

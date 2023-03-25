@@ -4,6 +4,7 @@ namespace Akhaled\Ecommerce\Core\Bootstrap;
 
 use Akhaled\Ecommerce\Core\Database\Connection;
 use Akhaled\Ecommerce\Core\Facade;
+use Akhaled\Ecommerce\Core\Facade\DatabaseConnection;
 use ErrorException;
 
 class Application
@@ -20,7 +21,11 @@ class Application
 
     public function respond()
     {
-        return Facade\Route::handle();
+        Facade\Route::handle();
+
+        DatabaseConnection::close();
+
+        exit;
     }
 
     public static function transformErrorsToExceptions($severity, $message, $file, $line)

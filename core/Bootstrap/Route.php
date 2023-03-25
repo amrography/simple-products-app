@@ -82,10 +82,14 @@ class Route
             die(404);
         }
 
-        if (count($endpoint) > 0) {
-            return call_user_func([new $endpoint[0]['callback'][0], $endpoint[0]['callback'][1]]);
+        if (count($endpoint) < 1) {
+            throw new Exception("Please provide valid callback function");
         }
 
-        throw new Exception("Please provide valid callback function");
+        header('Content-Type: application/json; charset=utf-8');
+
+        echo json_encode(
+            call_user_func([new $endpoint[0]['callback'][0], $endpoint[0]['callback'][1]])
+        );
     }
 }
