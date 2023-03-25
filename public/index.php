@@ -2,4 +2,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-(new \Akhaled\Ecommerce\Core\Bootstrap\Application)->bootstrap();
+$x = (new \Akhaled\Ecommerce\Core\Bootstrap\Application)
+    ->respond();
+
+dd($x);

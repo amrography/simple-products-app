@@ -1,5 +1,21 @@
 <?php
 
+if (! function_exists('dump') ) {
+    /**
+     * Debug and die
+     *
+     * @param $key
+     * @return void
+     */
+    function dump(...$keys): void {
+        foreach ($keys as $key) {
+            echo "<pre style='background: lightyellow; padding: 10px; font-size:16px;'>";
+            var_dump($key);
+            echo "</pre>";
+        }
+    }
+}
+
 if (! function_exists('dd') ) {
     /**
      * Debug and die
@@ -8,11 +24,7 @@ if (! function_exists('dd') ) {
      * @return void
      */
     function dd(...$keys): void {
-        foreach ($keys as $key) {
-            echo "<pre style='background: lightyellow; padding: 10px; font-size:16px;'>";
-            var_dump($key);
-            echo "</pre>";
-        }
+        dump(...$keys);
 
         die;
     }

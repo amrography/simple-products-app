@@ -1,6 +1,6 @@
 <?php
 
-namespace Akhaled\Ecommerce\Core;
+namespace Akhaled\Ecommerce\Core\Bootstrap;
 
 use Error;
 

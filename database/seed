@@ -5,7 +5,7 @@ use Akhaled\Ecommerce\Core\Facade\DatabaseConnection;
 
 require __DIR__.'/../vendor/autoload.php';
 
-(new \Akhaled\Ecommerce\Core\Bootstrap\Application)->bootstrap();
+new \Akhaled\Ecommerce\Core\Bootstrap\Application;
 
 DatabaseConnection::query(
     file_get_contents(__DIR__ . "/schema.sql")

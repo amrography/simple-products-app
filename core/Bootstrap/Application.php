@@ -2,7 +2,6 @@
 
 namespace Akhaled\Ecommerce\Core\Bootstrap;
 
-use Akhaled\Ecommerce\Core\Config;
 use Akhaled\Ecommerce\Core\Database\Connection;
 use Akhaled\Ecommerce\Core\Facade;
 use ErrorException;
@@ -16,14 +15,15 @@ class Application
     function __construct()
     {
         set_error_handler([$this, 'transformErrorsToExceptions']);
-    }
-
-    public function bootstrap()
-    {
         $this->registerContainerInstances();
     }
 
-    private static function transformErrorsToExceptions($severity, $message, $file, $line)
+    public function respond()
+    {
+        return Facade\Route::handle();
+    }
+
+    public static function transformErrorsToExceptions($severity, $message, $file, $line)
     {
         if (!(error_reporting() & $severity)) {
             return;
@@ -35,6 +35,7 @@ class Application
     {
         self::setInstance(Facade\Config::class, new Config);
         self::setInstance(Facade\DatabaseConnection::class, new Connection);
+        self::setInstance(Facade\Route::class, new Route);
 
         return $this;
     }

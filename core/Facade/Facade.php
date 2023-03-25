@@ -9,12 +9,12 @@ abstract class Facade
 {
     abstract public static function getFacadeBase(): string;
 
-    public static function __callStatic(string $function, array $arguments): mixed
+    final public static function __callStatic(string $function, array $arguments): mixed
     {
         return self::callOrigin($function, $arguments);
     }
 
-    public function __call(string $function, array $arguments): mixed
+    final public function __call(string $function, array $arguments): mixed
     {
         return self::callOrigin($function, $arguments);
     }
