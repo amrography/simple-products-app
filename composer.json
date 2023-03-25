@@ -3,7 +3,7 @@
     "autoload": {
         "psr-4": {
             "Akhaled\\Ecommerce\\": "src/",
-            "Akhaled\\Ecommerce\\Core\\": "src/core/"
+            "Akhaled\\Ecommerce\\Core\\": "core/"
         },
         "files": [
             "helpers.php"

@@ -2,10 +2,19 @@
 
 namespace Akhaled\Ecommerce\Core;
 
-abstract class Application
+class Application
 {
+    protected $config = [];
+
     public function bootstrap()
     {
-        # code...
+        $this->readConfig();
+    }
+
+    public function readConfig(): self
+    {
+        $this->config = include(base_path('.env'));
+
+        return $this;
     }
 }

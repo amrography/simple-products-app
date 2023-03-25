@@ -6,7 +6,7 @@
 
 ## Road map
 
-- [ ] Create app container
+- [x] Create app container
 - [ ] Include ORM
 - [ ] Include routes handler
 - [ ] Include validation processor
