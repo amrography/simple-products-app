@@ -21,7 +21,7 @@ class Application
 
     public function respond()
     {
-        Facade\Route::handle();
+        echo Facade\Route::handle();
 
         DatabaseConnection::close();
 

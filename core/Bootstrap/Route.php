@@ -7,11 +7,12 @@ use Exception;
 
 class Route
 {
-    private $routes = [];
+    private static $routes = [];
 
     function __construct()
     {
         require_once base_path("routes/api.php");
+        require_once base_path("routes/web.php");
     }
 
     /**
@@ -26,7 +27,7 @@ class Route
         $uri = trim($uri, '/');
         $uri = $uri ?: '/';
 
-        array_push($this->routes, [
+        array_push(self::$routes, [
             'uri' => $uri,
             'callback'=> $callback,
             'method' => $method,
@@ -59,7 +60,7 @@ class Route
 
     public function getRoutes()
     {
-        return $this;
+        return self::$routes;
     }
 
     /**
@@ -71,10 +72,10 @@ class Route
     {
         $matches = preg_grep(
             '#^' . preg_replace('/\/{(.*?)}/', '/(.*?)', Request::url()). '$#',
-            array_column($this->routes, 'uri')
+            array_column(self::$routes, 'uri')
         );
 
-        $endpoint = array_filter($this->routes, function($v, $k) use($matches) {
+        $endpoint = array_filter(self::$routes, function($v, $k) use($matches) {
             return isset($matches[$k]) && $v['method'] == Request::method();
         }, ARRAY_FILTER_USE_BOTH);
 
@@ -86,10 +87,11 @@ class Route
             throw new Exception("Please provide valid callback function");
         }
 
-        header('Content-Type: application/json; charset=utf-8');
+        $endpoint = array_values($endpoint);
 
-        echo json_encode(
-            call_user_func([new $endpoint[0]['callback'][0], $endpoint[0]['callback'][1]])
-        );
+        return call_user_func([
+            new $endpoint[0]['callback'][0],
+            $endpoint[0]['callback'][1]
+        ]);
     }
 }
