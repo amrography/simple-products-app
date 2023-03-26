@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
+
+    <link rel="stylesheet" href="/assets/app.css">
 </head>
 <body>
-    <div>
-        <h1>Time: </h1>
-        <?php echo time(); ?>
-    </div>
+    <div id="app"></div>
+
+    <script src="/assets/app.js"></script>
 </body>
 </html>
