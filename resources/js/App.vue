@@ -1,7 +1,9 @@
 <template>
-  <div id="nav">
-    <router-link :to="{name: 'Products'}">Home</router-link> |
-    <router-link :to="{name: 'AddProduct'}">Add new product</router-link>
+  <div class="container mx-auto flex flex-col min-h-screen justify-between">
+    <router-view />
+
+    <div class="bg-slate-100 p-5">
+      <p class="text-center">Scandiweb Test assignment</p>
+    </div>
   </div>
-  <router-view />
 </template>
