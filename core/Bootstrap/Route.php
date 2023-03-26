@@ -3,7 +3,6 @@
 namespace Akhaled\Ecommerce\Core\Bootstrap;
 
 use Akhaled\Ecommerce\Core\Facade\Request;
-use Exception;
 
 class Route
 {
@@ -83,15 +82,13 @@ class Route
             die(404);
         }
 
-        if (count($endpoint) < 1) {
-            throw new Exception("Please provide valid callback function");
-        }
-
-        $endpoint = array_values($endpoint);
+        $endpoint = count($endpoint) < 1 ?
+            self::$routes[0] :
+            array_values($endpoint)[0];
 
         return call_user_func([
-            new $endpoint[0]['callback'][0],
-            $endpoint[0]['callback'][1]
+            new $endpoint['callback'][0],
+            $endpoint['callback'][1]
         ]);
     }
 }
