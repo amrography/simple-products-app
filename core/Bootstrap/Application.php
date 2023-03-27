@@ -16,6 +16,7 @@ class Application
     function __construct()
     {
         set_error_handler([$this, 'transformErrorsToExceptions']);
+        set_exception_handler([$this, 'handleExceptions']);
         $this->registerContainerInstances();
     }
 
@@ -33,7 +34,20 @@ class Application
         if (!(error_reporting() & $severity)) {
             return;
         }
+
         throw new ErrorException($message, 0, $severity, $file, $line);
+    }
+
+    public static function handleExceptions($exception)
+    {
+        if (isset(getallheaders()['Accept']) && preg_match("/application\/json.*/", getallheaders()['Accept']) > 0) {
+            echo Facade\Response::json([
+                'message' => $exception->getMessage(),
+            ], 422);
+            return;
+        }
+
+        throw $exception;
     }
 
     private function registerContainerInstances(): self

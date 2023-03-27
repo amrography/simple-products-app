@@ -66,8 +66,8 @@ $product = (new \Akhaled\Ecommerce\Models\Product)->where('sku', '1023-0213-313'
 - [x] Include routes handler
 - [x] Handle route response
 - [x] Install vue, tailwind and webpack
-- [ ] UI for add new product
-- [ ] Add new product endpoint
-- [ ] Include validation processor
+- [x] UI for add new product
+- [x] Add new product endpoint
+- [x] Include validation processor
 - [ ] List products endpoint & link it to products index page
 - [ ] Bulk delete products

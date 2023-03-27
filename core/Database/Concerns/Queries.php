@@ -26,10 +26,10 @@ trait Queries
     public function create(array $data)
     {
         $this->execute(sprintf(
-            "INSERT INTO `%s` (%s) VALUES (\"%s\")",
+            "INSERT INTO `%s` (%s) VALUES ('%s')",
             $this->table,
             implode(', ', array_keys($data)),
-            implode('", "', array_values($data))
+            implode("', '", array_values($data))
         ));
 
         return $this->where("id", $this->conn->insert_id)

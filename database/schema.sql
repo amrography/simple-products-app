@@ -5,7 +5,7 @@ CREATE TABLE `products` (
   `name` varchar(255) NOT NULL,
   `sku` varchar(255) NOT NULL,
   `price` int NOT NULL,
-  `type` ENUM("dvd","book","furniture") NOT NULL,
+  `type` ENUM("DVD","Book","Furniture") NOT NULL,
   `attributes` json DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sku` (`sku`)

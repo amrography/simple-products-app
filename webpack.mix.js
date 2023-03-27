@@ -6,3 +6,9 @@ mix.ts("resources/js/app.ts", "assets").vue();
 mix.css("resources/css/app.css", "assets").tailwind();
 
 mix.setPublicPath("public");
+
+if (!mix.inProduction()) {
+  mix.webpackConfig({
+    devtool: "inline-source-map",
+  });
+}
