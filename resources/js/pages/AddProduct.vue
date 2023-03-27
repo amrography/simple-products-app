@@ -81,7 +81,7 @@
           <input
             type="number"
             min="0"
-            step="0.01"
+            step="any"
             id="price"
             v-model="form.price"
             :class="{
@@ -128,7 +128,7 @@
           <input
             type="number"
             min="0"
-            step="1"
+            step="any"
             id="size"
             v-model="form.size"
             :class="{
@@ -150,7 +150,7 @@
           <input
             type="number"
             min="0"
-            step="1"
+            step="0.1"
             id="weight"
             v-model="form.weight"
             :class="{
@@ -172,7 +172,7 @@
           <input
             type="number"
             min="0"
-            step="1"
+            step="any"
             id="height"
             v-model="form.height"
             :class="{
@@ -192,7 +192,7 @@
           <input
             type="number"
             min="0"
-            step="1"
+            step="any"
             id="width"
             v-model="form.width"
             :class="{
@@ -212,7 +212,7 @@
           <input
             type="number"
             min="0"
-            step="1"
+            step="any"
             id="length"
             v-model="form.length"
             :class="{

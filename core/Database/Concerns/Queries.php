@@ -72,7 +72,7 @@ trait Queries
         $this->query = $this->conn->query($sql);
 
         if ($this->query instanceof mysqli_result) {
-            return $this->limit == 1 ? $this->query->fetch_row() : $this->query->fetch_all();
+            return $this->limit == 1 ? $this->query->fetch_assoc() : $this->query->fetch_all(MYSQLI_ASSOC);
         }
 
         return $this->query;

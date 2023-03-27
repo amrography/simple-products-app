@@ -11,7 +11,8 @@ class ProductController
     public function index()
     {
         return Response::json(
-            Request::all()
+            (new Product)
+                ->get()
         );
     }
 
@@ -53,7 +54,7 @@ class ProductController
                 ->select('count(*)')
                 ->where('sku', Request::post('sku', 'string'))
                 ->limit(1)
-                ->get()[0]
+                ->get()['count(*)']
         ]);
     }
 }
