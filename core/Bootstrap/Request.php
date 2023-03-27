@@ -104,12 +104,23 @@ class Request
      *
      * @param string $key
      * @param array $type
+     * @param string $sanitize
      * @return bool
      */
-    public function value($key, array $type = null)
+    public function value($key, array $type = null, string $sanitize = null)
     {
         $type = $type ?? $_REQUEST;
-        return $this->has($type, $key) ? $type[$key] : null;
+
+        if (!$this->has($type, $key)) {
+            return null;
+        }
+
+        switch ($sanitize) {
+            case 'string':
+                return htmlspecialchars($type[$key]);
+            default:
+                return $type[$key];
+        }
     }
 
 
@@ -125,14 +136,15 @@ class Request
     }
 
     /**
-     * get datat from post request
+     * get data from post request
      *
      * @param string $key
+     * @param string $sanitize
      * @return string $value
      */
-    public function post($key)
+    public function post($key, string $sanitize = null)
     {
-        return $this->value($key, $_POST);
+        return $this->value($key, $_POST, $sanitize);
     }
 
     /**

@@ -9,11 +9,11 @@ trait Queries
     public function get()
     {
         $result = $this->execute(sprintf(
-            "SELECT %s FROM `%s` WHERE %s LIMIT %d",
+            "SELECT %s FROM `%s`%s%s",
             implode(",", $this->select),
             $this->table,
-            $this->where,
-            $this->limit
+            (strlen($this->where) > 0 ? " WHERE {$this->where}": ""),
+            ($this->limit > 0 ) ? " LIMIT {$this->limit}" : "",
         ));
 
         $this->where = "";
