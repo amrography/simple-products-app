@@ -119,7 +119,7 @@ class Request
             case 'string':
                 return htmlspecialchars($type[$key]);
             case 'float':
-                return filter_var($type[$key], FILTER_SANITIZE_NUMBER_FLOAT);
+                return filter_var($type[$key], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             default:
                 return $type[$key];
         }

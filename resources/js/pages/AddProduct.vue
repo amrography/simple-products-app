@@ -150,7 +150,7 @@
           <input
             type="number"
             min="0"
-            step="0.1"
+            step="any"
             id="weight"
             v-model="form.weight"
             :class="{
