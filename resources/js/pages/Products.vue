@@ -9,17 +9,13 @@
         <router-link
           :to="{ name: 'AddProduct' }"
           class="bg-green-600 border-green-800 px-5 py-3 text-white"
-        >
-          ADD
-        </router-link>
+        >ADD</router-link>
 
         <button
           @click="massDelete"
           id="delete-product-btn"
           class="bg-red-600 border-red-900 px-5 py-3 text-white"
-        >
-          MASS DELETE
-        </button>
+        >MASS DELETE</button>
       </div>
     </div>
 
