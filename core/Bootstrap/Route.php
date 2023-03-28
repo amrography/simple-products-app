@@ -57,6 +57,17 @@ class Route
         return $this->add('POST', $uri, $callback);
     }
 
+    /**
+     * add new delete route
+     *
+     * @param string $uri
+     * @param object|callback $callback
+     */
+    public function delete($uri, $callback): self
+    {
+        return $this->add('DELETE', $uri, $callback);
+    }
+
     public function getRoutes()
     {
         return self::$routes;

@@ -21,7 +21,7 @@ class ProductController
         $data = [
             'sku' => Request::post('sku', 'string'),
             'name' => Request::post('name', 'string'),
-            'price' => Request::post('price', 'float') / 100, // store price in cent
+            'price' => Request::post('price', 'float') * 100, // store price in cent
             'type' => Request::post('type', 'string'),
         ];
 
@@ -45,6 +45,15 @@ class ProductController
         $product = (new Product)->create($data);
 
         return Response::json($data);
+    }
+
+    public function destroy()
+    {
+        (new Product)
+            ->where('id', 'IN', Request::post('ids', 'array'))
+            ->delete();
+
+        return Response::json();
     }
 
     public function validateSku()

@@ -57,7 +57,7 @@ trait Queries
     public function delete(): bool
     {
         $result = $this->execute(sprintf(
-            "DELETE FROM `%s`",
+            "DELETE FROM `%s`%s",
             $this->table,
             strlen($this->where) > 0 ? " WHERE {$this->where}" : ""
         ));

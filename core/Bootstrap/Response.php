@@ -13,7 +13,7 @@ class Response
         return ob_get_clean();
     }
 
-    public function json(array $data, int $code = 200)
+    public function json(array $data = [], int $code = 200)
     {
         header('Content-Type: application/json; charset=utf-8');
         http_response_code($code);

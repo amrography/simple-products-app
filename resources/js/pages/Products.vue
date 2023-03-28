@@ -14,7 +14,7 @@
         </router-link>
 
         <button
-          type="button"
+          @click="massDelete"
           id="delete-product-btn"
           class="bg-red-600 border-red-900 px-5 py-3 text-white"
         >
@@ -26,9 +26,17 @@
     <div class="grid grid-cols-4 gap-4 mt-5">
       <div
         class="border p-5 w-72 xl:mb-0"
+        :class="{
+          'border-blue-600': checkboxes[product.id],
+        }"
         v-for="product in products"
         :key="product.id"
       >
+        <input
+          type="checkbox"
+          class="delete-checkbox"
+          v-model="checkboxes[product.id]"
+        />
         <p class="text-center">
           {{ product.sku }}
         </p>
@@ -48,6 +56,7 @@ export default {
   data() {
     return {
       products: [],
+      checkboxes: [],
     };
   },
   methods: {
@@ -64,11 +73,23 @@ export default {
         case "Book":
           return `Weight: ${attrs[0]} KG`;
         case "Furniture":
-          return `Dimensions: ${attrs.join('x')}`;
+          return `Dimensions: ${attrs.join("x")}`;
 
         default:
           break;
       }
+    },
+    async massDelete() {
+      await this.$axios.post("delete-products", {
+        ids: JSON.stringify(Object.keys(this.checkboxes)),
+      });
+
+      for (const id in this.checkboxes) {
+        let index = this.products.findIndex((p) => p.id == id);
+        this.products.splice(index, 1);
+      }
+
+      this.checkboxes = [];
     },
   },
   async mounted() {

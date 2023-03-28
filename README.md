@@ -70,4 +70,4 @@ $product = (new \Akhaled\Ecommerce\Models\Product)->where('sku', '1023-0213-313'
 - [x] Add new product endpoint
 - [x] Include validation processor
 - [x] List products endpoint & link it to products index page
-- [ ] Bulk delete products
+- [x] Bulk delete products

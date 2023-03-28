@@ -29,7 +29,13 @@ trait Grammar
             $this->where .= " AND";
         }
 
-        $this->where .= sprintf('`%s`.`%s` %s "%s"', $this->table, $start, $op, $end);
+        if (strtolower($op) == 'in') {
+            $end = "(". implode(", ", $end) .")";
+        } else {
+            $end = '"'.$end.'"';
+        }
+
+        $this->where .= sprintf('`%s`.`%s` %s %s', $this->table, $start, $op, $end);
 
         return $this;
     }

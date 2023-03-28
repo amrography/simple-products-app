@@ -116,6 +116,8 @@ class Request
         }
 
         switch ($sanitize) {
+            case 'array':
+                return json_decode($type[$key]);
             case 'string':
                 return htmlspecialchars($type[$key]);
             case 'float':
