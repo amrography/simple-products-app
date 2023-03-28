@@ -308,7 +308,7 @@ export default {
         sku: {
           $autoDirty: true,
           required,
-          maxLength: maxLength(255),
+          maxLength: maxLength(190),
           unique: helpers.withMessage(
             "SKU already exists",
             helpers.withAsync(async (sku) => {

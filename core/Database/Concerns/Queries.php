@@ -2,6 +2,7 @@
 
 namespace Akhaled\Ecommerce\Core\Database\Concerns;
 
+use Exception;
 use mysqli_result;
 
 trait Queries
@@ -67,9 +68,13 @@ trait Queries
         return $result;
     }
 
-    public function execute(string $sql): array| bool
+    public function execute(string $sql)
     {
         $this->query = $this->conn->query($sql);
+
+        if ($this->conn->error) {
+            throw new Exception($this->conn->error);
+        }
 
         if ($this->query instanceof mysqli_result) {
             return $this->limit == 1 ? $this->query->fetch_assoc() : $this->query->fetch_all(MYSQLI_ASSOC);

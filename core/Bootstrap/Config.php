@@ -8,7 +8,7 @@ class Config
 {
     private array $config = [];
 
-    function __construct()
+    public function __construct()
     {
         $this->config = include(base_path('.env'));
     }
@@ -20,10 +20,10 @@ class Config
         }
 
         try {
-            return array_reduce(explode(".", $key), function($carry, $k) {
+            return array_reduce(explode(".", $key), function ($carry, $k) {
                 return $carry[$k];
             }, $this->config);
-        } catch (Error) {
+        } catch (Error $e) {
             //
         }
 

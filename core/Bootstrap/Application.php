@@ -13,7 +13,7 @@ class Application
 
     protected static array $instances = [];
 
-    function __construct()
+    public function __construct()
     {
         set_error_handler([$this, 'transformErrorsToExceptions']);
         set_exception_handler([$this, 'handleExceptions']);
@@ -40,7 +40,7 @@ class Application
 
     public static function handleExceptions($exception)
     {
-        if (isset(getallheaders()['Accept']) && preg_match("/application\/json.*/", getallheaders()['Accept']) > 0) {
+        if (function_exists('getallheaders') && isset(getallheaders()['Accept']) && preg_match("/application\/json.*/", getallheaders()['Accept']) > 0) {
             echo Facade\Response::json([
                 'message' => $exception->getMessage(),
             ], 422);
@@ -52,9 +52,9 @@ class Application
 
     private function registerContainerInstances(): self
     {
-        self::setInstance(Facade\Config::class, new Config);
-        self::setInstance(Facade\DatabaseConnection::class, new Connection);
-        self::setInstance(Facade\Route::class, new Route);
+        self::setInstance(Facade\Config::class, new Config());
+        self::setInstance(Facade\DatabaseConnection::class, new Connection());
+        self::setInstance(Facade\Route::class, new Route());
 
         return $this;
     }
@@ -65,7 +65,7 @@ class Application
      * @param string $key
      * @return object
      */
-    public static function getInstance(string $key): object|null
+    public static function getInstance(string $key)
     {
         return self::$instances[$key];
     }

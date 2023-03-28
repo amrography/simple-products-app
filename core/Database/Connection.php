@@ -3,6 +3,7 @@
 namespace Akhaled\Ecommerce\Core\Database;
 
 use Akhaled\Ecommerce\Core\Facade\Config;
+use Exception;
 use mysqli;
 use mysqli_result;
 
@@ -37,6 +38,10 @@ class Connection
     public function query(string $sql, array $substitute = [], int $return = 1)
     {
         $q = $this->conn->multi_query(sprintf($sql, ...$substitute));
+
+        if ($this->conn->error) {
+            throw new Exception($this->conn->error);
+        }
 
         if ($q instanceof mysqli_result) {
             return $return == 1 ? $q->fetch_row() : $q->fetch_all();
